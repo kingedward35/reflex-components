@@ -29,35 +29,36 @@ data Props = Props { variant  :: Variant
                    , href     :: String
                    , size     :: Size
                    }
+
 myButton :: DomBuilder t m => String -> Props -> m ()
 myButton str props =
   elAttr "button" ("href" =: (T.pack newHref) <>
-                                      "class" =: T.pack (
-                                        newVariant ++
-                                        " " ++
-                                        newColor ++
-                                        " " ++
-                                        newDisabled ++
-                                        " " ++
-                                        newSize
-                                        )
-                                      ) $ text (T.pack str)
+                    "class" =: T.pack (
+                      newVariant ++
+                      " " ++
+                      newColor ++
+                      " " ++
+                      newDisabled ++
+                      " " ++
+                      newSize
+                      )
+                    ) $ text (T.pack str)
   where
-    newVariant  = case (variant props) of
+    newVariant  = case variant props of
                     Contained -> "contained"
                     Text -> "text"
                     Outlined -> "outlined"
-    newColor    = case (color props) of
+    newColor    = case color props of
                     Default -> "default"
                     Inherit -> "inherit"
                     Primary -> "primary"
                     Secondary -> "secondary"
-    newDisabled = case (disabled props) of
+    newDisabled = case disabled props of
                     True -> "disabled"
                     False -> ""
-    newHref     = case (href props) of
+    newHref     = case href props of
                     val -> val
-    newSize     = case (size props) of
+    newSize     = case size props of
                     Small -> "small"
                     Medium -> "medium"
                     Large -> "large"

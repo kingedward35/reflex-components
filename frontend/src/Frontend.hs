@@ -33,7 +33,7 @@ frontend = Frontend
         el "li" $ text "one"
         el "li" $ text "two"
         el "li" $ text "three"
-      myButton "Click Me!!" (Props Contained Primary False "" Small)
+      myButton "Click Me!!" $Props Contained Primary False "" Small
       el "div" $ do
         t <- inputElement def
         dynText $ _inputElement_value t
