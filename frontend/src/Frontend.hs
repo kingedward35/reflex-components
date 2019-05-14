@@ -1,6 +1,9 @@
 {-# LANGUAGE DataKinds #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TypeApplications #-}
+{-# LANGUAGE RecursiveDo #-}
+{-# LANGUAGE ScopedTypeVariables #-}
+
 module Frontend where
 
 import qualified Data.Text as T
@@ -12,8 +15,31 @@ import Common.Api
 import Common.Route
 import Obelisk.Generated.Static
 
-import Frontend.Button --(myButton, Props, Variant(..), Size(..), Color(..))
+import Frontend.Button 
 
+-- dynButton :: MonadWidget t m => m ()
+-- dynButton = el "div" $ do
+--   el "h2" $ text "Button enabled / disabled"
+--   cb <- el "label" $ do
+--     cb1 <- checkbox True def
+--     text "Enable or Disable the button"
+--     return cb1
+--   el "p" blank
+--   counter :: Dynamic t Int <- count =<< disaButton (_checkbox_value cb) "Click me"
+--   el "p" blank
+--   display counter
+
+-- disaButton :: MonadWidget t m
+--             => Dynamic t Bool -- ^ enable or disable button
+--             -> T.Text         -- ^ Label
+--             -> m (Event t ())
+-- disaButton enabled label = do
+--     let attrs = ffor enabled $ \e -> monoidGuard (not e) $ "disabled" =: "disabled"
+--     (btn, _) <- elDynAttr' "button" attrs $ text label
+--     pure $ domEvent Click btn
+
+-- monoidGuard :: Monoid a => Bool -> a -> a
+-- monoidGuard p a = if p then a else mempty
 
 frontend :: Frontend (R FrontendRoute)
 frontend = Frontend
@@ -33,7 +59,7 @@ frontend = Frontend
         el "li" $ text "one"
         el "li" $ text "two"
         el "li" $ text "three"
-      myButton "Click Me!!" $Props Contained Primary False "" Small
+      myButton "Click Me!!" $ Props Contained Primary False "" Small
       el "div" $ do
         t <- inputElement def
         dynText $ _inputElement_value t

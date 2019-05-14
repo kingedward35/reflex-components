@@ -4,10 +4,6 @@
 }
 
 button {
-  /* color: hotpink;
-  padding: 6px 12px;
-  border-radius: 3px;
-  font-size: 16px; */
   margin: 6px;
   font-size: 16px;
   line-height: 1.75;
@@ -15,7 +11,7 @@ button {
   min-width: 64px;
   padding: 6px 16px;
   border-radius: 4px;
-  color: cyan; /*theme.palette.text.primary*/;
+  color: cyan;
 }
 
 button:hover {
