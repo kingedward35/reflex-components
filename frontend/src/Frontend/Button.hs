@@ -33,15 +33,7 @@ data Props = Props { variant  :: Variant
 myButton :: DomBuilder t m => String -> Props -> m ()
 myButton str props =
   elAttr "button" ("href" =: (T.pack newHref) <>
-                    "class" =: T.pack (
-                      newVariant ++
-                      " " ++
-                      newColor ++
-                      " " ++
-                      newDisabled ++
-                      " " ++
-                      newSize
-                      )
+                    "class" =: newClass
                     ) $ text (T.pack str)
   where
     newVariant  = case variant props of
@@ -62,4 +54,8 @@ myButton str props =
                     Small -> "small"
                     Medium -> "medium"
                     Large -> "large"
-
+    newClass    = T.pack (newVariant <> " " <>
+                          newColor <> " " <>
+                          newDisabled <> " " <>
+                          newSize
+                          )
